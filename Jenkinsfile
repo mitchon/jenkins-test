@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        gradle
+        node { label 'gradle' }
     }
     stages {
         stage('build') {
