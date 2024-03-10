@@ -1,10 +1,18 @@
 pipeline {
-    agent { docker { image 'maven:3.9.6-eclipse-temurin-17-alpine' } }
+    agent {
+        docker {
+            args '-v /jenkins/.gradle:/jenkins/.gradle'
+            image 'gradle:latest'
+        }
+    }
     stages {
         stage('build') {
             steps {
                 sh 'gradle --version'
             }
         }
+    }
+    environment {
+        GRADLE_USER_HOME = '/jenkins/.gradle'
     }
 }
