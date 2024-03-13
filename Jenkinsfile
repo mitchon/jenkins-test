@@ -3,12 +3,12 @@ pipeline {
         node { label 'gradle' }
     }
     stages {
-        agent {
-            docker {
-                image 'gradle:latest'
-            }
-        }
         stage('build') {
+            agent {
+                docker {
+                    image 'gradle:latest'
+                }
+            }
             steps {
                 sh "./gradlew --version"
             }
