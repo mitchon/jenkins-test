@@ -3,9 +3,12 @@ pipeline {
         node { label 'gradle' }
     }
     stages {
+        stage('prepare') {
+            env.GRADLE_USER_HOME = "$WORKSPACE/.gradle"
+        }
         stage('build') {
             steps {
-                sh './gradlew --version'
+                sh "./gradlew --version"
             }
         }
     }
